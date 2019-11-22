@@ -1,0 +1,81 @@
+*{
+}
+
+#actor{
+    /* position: absolute; */
+  text-align: center;
+  background: #333030;
+  /* display: grid;
+  grid-template-areas: 
+  "img div"; */
+
+}
+
+#actor img{
+   display: block;
+   width: 75%;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 10px;
+   border-radius: 25px;
+   box-shadow: 1px 0px 5px #fff;
+}
+
+#actor div{
+    /* position: relative; */
+
+}
+
+#actor div h1 {
+    position: relative;
+    color: #fff;
+    text-shadow: 1px 0px 5px black;
+    font-size: 2rem;
+    transform: translateY(-30vh);
+    /* margin-top: 50px; */
+}
+
+#disabled{
+    display: none;
+}
+
+#search{
+    position: fixed;
+    z-index: 999;
+}
+
+#movies{
+    /* position: absolute; */
+  text-align: center;
+  background: #333030;
+  /* display: grid;
+  grid-template-areas: 
+  "img div"; */
+
+}
+
+#movies img{
+   display: block;
+   width: 75%;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 10px;
+   border-radius: 25px;
+   box-shadow: 1px 0px 5px #fff;
+}
+
+#movies div{
+    /* position: relative; */
+
+}
+
+#movies div h1 {
+    position: relative;
+    color: #fff;
+    text-shadow: 1px 0px 5px black;
+    font-size: 1.5rem;
+    transform: translateY(-30vh);
+    /* margin-top: 50px; */
+}
+
+
