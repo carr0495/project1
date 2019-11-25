@@ -28,6 +28,7 @@ let APP ={
             let infoName = document.createElement('h3');
             let infoDate = document.createElement('h3');
             let overview = document.createElement('p');
+            let popularity = document.createElement('h3');
 
             let info = document.createElement('h3');
 
@@ -35,8 +36,10 @@ let APP ={
             img.src = `${APP.getImageSizeLink(500)}${data.backdrop_path}`;
             parent.appendChild(div);
             div.appendChild(img);
+            popularity.textContent = `Popularity: ${data.popularity}%`;
             infoName.textContent = `${data.original_title}`;
             div.appendChild(infoName);
+            div.appendChild(popularity);
             infoDate.textContent = `Release Date: ${data.release_date}`;
             div.appendChild(infoDate);
             overview.textContent = `${data.overview}`;
@@ -95,7 +98,10 @@ let APP ={
           let imageLink = APP.getImageSizeLink(300);
           name.textContent = object.name;
           image.src = `${imageLink}${object.profile_path}`;
-          if (object.known_for[0].media_type == "movie") {
+          object.known_for.forEach(pic => {
+              
+         
+          if (pic.media_type == "movie") {
               console.log(image);
               if (object.profile_path != null) {
                 div.id = object.name;
@@ -108,6 +114,7 @@ let APP ={
               }
             
           }
+        });
           
 
           
