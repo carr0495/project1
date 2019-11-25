@@ -13,8 +13,19 @@ let APP ={
     personData: null,
     movieData: null,
     movieDataDisplay: function(ev){
-      console.log(ev.target);
+        let movies = document.getElementById("movies").classList.add('disabled');
+      console.log(ev.target.alt);
+      console.log('inside movie data');
+      console.log(`${APP.baseURL}search/movie/${ev.target.alt}${APP.APIkey}`);
+      let mylink = `https://api.themoviedb.org/3/movie/${ev.target.alt}?language=en-US&api_key=654017f2465d4ccc44d71a511faa8c40`;
+
+      fetch(mylink)
+        .then(response=> response.json())
+        .then(data =>{
+            console.log(data);
+           
       
+        })  
     },
     displayMovies: function(ev){
     let actor = document.getElementById("actor").classList.add('disabled');
@@ -40,6 +51,9 @@ let APP ={
                     movieName.textContent = movie.original_title;
                     let parent = document.getElementById("movies");
                     img.src = `${APP.getImageSizeLink(300)}${movie.poster_path}`;
+                    img.alt = movie.id;
+                    console.log(movie.id);
+                    
                     parent.appendChild(div);
                     div.appendChild(img);
                     div.appendChild(movieName);
