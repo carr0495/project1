@@ -25,10 +25,23 @@ let APP ={
             console.log(data);
             let parent = document.getElementById("movieData");
             let img = document.createElement('img');
+            let infoName = document.createElement('h3');
+            let infoDate = document.createElement('h3');
+            let overview = document.createElement('p');
+
+            let info = document.createElement('h3');
+
             div = document.createElement('div');
             img.src = `${APP.getImageSizeLink(500)}${data.backdrop_path}`;
             parent.appendChild(div);
             div.appendChild(img);
+            infoName.textContent = `${data.original_title}`;
+            div.appendChild(infoName);
+            infoDate.textContent = `Release Date: ${data.release_date}`;
+            div.appendChild(infoDate);
+            overview.textContent = `${data.overview}`;
+            div.appendChild(overview);
+
 
       
         })  

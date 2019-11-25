@@ -45,7 +45,7 @@ body{
     position: fixed;
     z-index: 999;
     background-color: #fff;
-    opacity: 80%;
+    opacity: 90%;
 }
 
 #movies{
@@ -90,7 +90,7 @@ body{
 
 #movieData img{
     display: block;
-    width: 75%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -110,6 +110,16 @@ body{
      font-size: 1.5rem;
      transform: translateY(-30vh);
      /* margin-top: 50px; */
+ }
+
+ #movieData div h3{
+     color: #fff;
+     text-shadow: 1px 0px 5px black;
+     font-size: 1.5rem;
+ }
+
+ #movieData div p{
+     color: #fff;
  }
 
 
