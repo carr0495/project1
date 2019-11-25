@@ -12,8 +12,12 @@ let APP ={
     // personURL: `${APP.baseURL}search/${APP.person}`,
     personData: null,
     movieData: null,
+    movieDataDisplay: function(ev){
+      console.log(ev.target);
+      
+    },
     displayMovies: function(ev){
-    let actor = document.getElementById("actor").id = "disabled";
+    let actor = document.getElementById("actor").classList.add('disabled');
     // console.log(ev.target.alt);
     // console.log(ev.target.firstChild.data);
     console.log(ev.target);
@@ -39,6 +43,8 @@ let APP ={
                     parent.appendChild(div);
                     div.appendChild(img);
                     div.appendChild(movieName);
+                    img.addEventListener('click',APP.movieDataDisplay);
+
                 }
                 
             });
@@ -64,7 +70,7 @@ let APP ={
                 parent.appendChild(div);
                 div.appendChild(image);
                 div.appendChild(name);
-                div.addEventListener('click',APP.displayMovies);
+                image.addEventListener('click',APP.displayMovies);
                 
               }
             
@@ -94,7 +100,6 @@ let APP ={
             data.results.forEach(person => {
                 if (person.known_for_department == "Acting") {
                     APP.displayProfile(person);
-                    
                 }
             });
         })
