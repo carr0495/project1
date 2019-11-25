@@ -1,6 +1,8 @@
 *{
 }
-
+body{
+    background-color: #333030;
+}
 #actor{
     /* position: absolute; */
   text-align: center;
@@ -42,6 +44,8 @@
 #search{
     position: fixed;
     z-index: 999;
+    background-color: #fff;
+    opacity: 80%;
 }
 
 #movies{
