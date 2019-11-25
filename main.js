@@ -23,7 +23,13 @@ let APP ={
         .then(response=> response.json())
         .then(data =>{
             console.log(data);
-           
+            let parent = document.getElementById("movieData");
+            let img = document.createElement('img');
+            div = document.createElement('div');
+            img.src = `${APP.getImageSizeLink(300)}${data.backdrop_path}`;
+            parent.appendChild(div);
+            div.appendChild(img);
+
       
         })  
     },

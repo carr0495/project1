@@ -78,4 +78,34 @@
     /* margin-top: 50px; */
 }
 
+#movieData{
+    text-align: center;
+    background: #333030;
+}
+
+
+#movieData img{
+    display: block;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border-radius: 25px;
+    box-shadow: 1px 0px 5px #fff;
+ }
+ 
+ #movieData div{
+     /* position: relative; */
+ 
+ }
+ 
+ #movieData div h1 {
+     position: relative;
+     color: #fff;
+     text-shadow: 1px 0px 5px black;
+     font-size: 1.5rem;
+     transform: translateY(-30vh);
+     /* margin-top: 50px; */
+ }
+
 
