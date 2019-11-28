@@ -44,8 +44,9 @@ body{
 #search{
     position: fixed;
     z-index: 999;
-    background-color: #fff;
-    opacity: 90%;
+    background-color: #256988;
+    width: 100%;
+    padding: 10px;
 }
 
 #movies{
