@@ -42,11 +42,13 @@ body{
 }
 
 #search{
+    margin: 0;
     position: fixed;
     z-index: 999;
-    background-color: #256988;
+    background-color: #1f1f1f;
     width: 100%;
     padding: 10px;
+    box-shadow: 0px 0px 4px black;
 }
 
 #movies{
