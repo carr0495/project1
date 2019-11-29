@@ -27,6 +27,7 @@ let APP = {
         //console.log('inside movie data');
         //console.log(`${APP.baseURL}search/movie/${ev.target.alt}${APP.APIkey}`);
         let mylink = `https://api.themoviedb.org/3/movie/${ev.target.alt}?language=en-US&api_key=654017f2465d4ccc44d71a511faa8c40`;
+        let castLink = `https://api.themoviedb.org/3/movie/${ev.target.alt}/credits?language=en-US&api_key=654017f2465d4ccc44d71a511faa8c40`
         fetch(mylink)
             .then(response => response.json())
             .then(data => {
@@ -37,7 +38,6 @@ let APP = {
                 let infoDate = document.createElement('h3');
                 let overview = document.createElement('p');
                 let popularity = document.createElement('h3');
-
                 let info = document.createElement('h3');
 
                 div = document.createElement('div');
@@ -52,9 +52,34 @@ let APP = {
                 div.appendChild(infoDate);
                 overview.textContent = `${data.overview}`;
                 div.appendChild(overview);
+            })
+            .catch({});
+            fetch(castLink)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.cast.forEach(member => {
+                    console.log(member.name);
+                    let parent = document.getElementById('movieData');
+                    let container = document.createElement('div');
+                    container.id = "container";
+                    let castContainer = document.createElement('div');
+                    castContainer.id = "castContainer";
+                    parent.appendChild(container);
+                    container.appendChild(castContainer);
+                    let img = document.createElement('img');
+                    img.src = `${APP.getImageSizeLink(300)}${member.profile_path}`;
+                    if (member.profile_path == null) {
+                        img.src = "no_photo.png";
+                    }
+                    castContainer.appendChild(img);
+                    let name = document.createElement('p');
+                    name.textContent = member.name + " | " + member.character;
+                    castContainer.appendChild(name);
 
 
-
+                });
+                
             })
     },
     displayMovies: function (ev) {

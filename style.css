@@ -31,7 +31,7 @@ body{
 #actor div h1 {
     position: relative;
     color: #fff;
-    text-shadow: 1px 0px 5px black;
+    text-shadow: 1px 0px 5px #5a1010;
     font-size: 2rem;
     transform: translateY(-30vh);
     /* margin-top: 50px; */
@@ -79,7 +79,7 @@ body{
 #movies div h1 {
     position: relative;
     color: #fff;
-    text-shadow: 1px 0px 5px black;
+    text-shadow: 1px 0px 5px #5a1010;
     font-size: 1.5rem;
     transform: translateY(-30vh);
     /* margin-top: 50px; */
@@ -100,6 +100,7 @@ body{
     border-radius: 25px;
     box-shadow: 1px 0px 5px #fff;
  }
+
  
  #movieData div{
      /* position: relative; */
@@ -109,7 +110,7 @@ body{
  #movieData div h1 {
      position: relative;
      color: #fff;
-     text-shadow: 1px 0px 5px black;
+     text-shadow: 1px 0px 5px #5a1010;
      font-size: 1.5rem;
      transform: translateY(-30vh);
      /* margin-top: 50px; */
@@ -125,4 +126,20 @@ body{
      color: #fff;
  }
 
+#castContainer{
+height: 300px;
+width: auto;
+}
 
+#container{
+    display: flex;
+    margin: 2px;
+    padding: 20px;
+    background-color: #3b3b3b;
+    border-radius: 25px;
+    width: 135px;
+    float: left;
+    justify-content: space-between;
+    max-height: 300px;
+
+}
