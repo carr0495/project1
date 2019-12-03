@@ -200,29 +200,29 @@ let APP = {
                 console.log(`removed: ${page.firstChild}`);
                 page.removeChild(page.firstChild);
             }
-
         });
-
     }
-
-
 }
 function ps(ev) {
     ev.preventDefault();
-
+    // history.go(-1);
     let name = location.hash.split("#");
     console.log(name[1]);
     console.log(ev.state);
+    console.log(history);
+    console.log(APP.personTarget);
+    console.log(APP.movieTarget);
+    console.log(APP.dataTarget);
+
     
-    // if (name[1] == "actor") {
-    //     APP.displayProfile(APP.personTarget);
-    // } else if (name[1] == "movies") {
-    //     APP.displayMovies(APP.movieTarget);
+    if (name[1] == "actor") {
+        APP.displayProfile(APP.personTarget);
+    } else if (name[1] == "movies") {
+        APP.displayMovies(APP.movieTarget);
 
-    // } else {
-    //     APP.movieDataDisplay(APP.dataTarget);
-
-    // } 
+    } else {
+        APP.movieDataDisplay(APP.dataTarget);
+    } 
 
 }
 
