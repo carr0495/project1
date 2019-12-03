@@ -59,7 +59,7 @@ let APP = {
             .then(data => {
                 console.log(data);
                 data.cast.forEach(member => {
-                    console.log(member.name);
+                    //console.log(member.name);
                     let parent = document.getElementById('movieData');
                     let container = document.createElement('div');
                     container.id = "container";
