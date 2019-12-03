@@ -17,15 +17,13 @@ let APP = {
     personData: null,
     movieData: null,
     movieDataDisplay: function (ev) {
+        ev.preventDefault();
+        history.pushState({}, "", "#movieData");
         APP.counter = 1;
         APP.clearPages();
         APP.dataTarget = ev;
         APP.active = "movieData";
-        location.href = "#movieData";
         APP.checkHash("movieData")
-        //console.log(ev.target.alt);
-        //console.log('inside movie data');
-        //console.log(`${APP.baseURL}search/movie/${ev.target.alt}${APP.APIkey}`);
         let mylink = `https://api.themoviedb.org/3/movie/${ev.target.alt}?language=en-US&api_key=654017f2465d4ccc44d71a511faa8c40`;
         let castLink = `https://api.themoviedb.org/3/movie/${ev.target.alt}/credits?language=en-US&api_key=654017f2465d4ccc44d71a511faa8c40`
         fetch(mylink)
@@ -52,9 +50,7 @@ let APP = {
                 div.appendChild(infoDate);
                 overview.textContent = `${data.overview}`;
                 div.appendChild(overview);
-            })
-            .catch({});
-            fetch(castLink)
+                fetch(castLink)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -79,24 +75,25 @@ let APP = {
 
 
                 });
-                
+
+            });
             })
+            .catch({});
+        
     },
     displayMovies: function (ev) {
-        // console.log(ev.target.alt);
-        // console.log(ev.target.firstChild.data);
-        //console.log(ev.target);
+        ev.preventDefault();
+        history.pushState({}, "", "#movies");
         APP.counter = 1;
         APP.clearPages();
         APP.movieTarget = ev;
-        location.href = "#movies"
         APP.checkHash('movies');
 
         let link = ev.target.alt;
         if (!ev.target.alt) {
             link = ev.target.firstChild.data;
         }
-        
+
 
         fetch(`${APP.baseURL}search/person${APP.APIkey}${link}`)
             .then(response => response.json())
@@ -127,69 +124,60 @@ let APP = {
     getImageSizeLink: function (width) {
         return `${APP.imagePath}w${width}/`
     },
-    displayProfile: function (object) {
-        location.href = "#actor";
+    displayProfile: function (ev) {
+        ev.preventDefault();
+        history.pushState({}, "", "#actor");
+        APP.personTarget = ev;
         APP.checkHash('actor');
-        let parent = document.getElementById('actor');
-        let div = document.createElement('div');
-        let name = document.createElement('h1');
-        let image = document.createElement('img');
-        let imageLink = APP.getImageSizeLink(300);
 
-        name.textContent = object.name;
-        image.src = `${imageLink}${object.profile_path}`;
-        object.known_for.forEach(pic => {
-            //add #actor to the end
+        APP.person = ev.target.parentElement[0].value
+        fetch(`${APP.baseURL}search/person${APP.APIkey}${APP.person}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.results.forEach(person => {
+                    if (person.known_for_department == "Acting") {
 
-            if (pic.media_type == "movie") {
-                //console.log(image);
-                if (object.profile_path != null) {
-                    div.id = object.name;
-                    image.alt = object.name;
-                    parent.appendChild(div);
-                    div.appendChild(image);
-                    div.appendChild(name);
-                    image.addEventListener('click', APP.displayMovies);
+                        APP.checkHash('actor');
+                        let parent = document.getElementById('actor');
+                        let div = document.createElement('div');
+                        let name = document.createElement('h1');
+                        let image = document.createElement('img');
+                        let imageLink = APP.getImageSizeLink(300);
 
-                }
+                        name.textContent = person.name;
+                        image.src = `${imageLink}${person.profile_path}`;
+                        person.known_for.forEach(pic => {
+                            //add #actor to the end
 
-            }
-        });
+                            if (pic.media_type == "movie") {
+                                //console.log(image);
+                                if (person.profile_path != null) {
+                                    div.id = person.name;
+                                    image.alt = person.name;
+                                    parent.appendChild(div);
+                                    div.appendChild(image);
+                                    div.appendChild(name);
+                                    image.addEventListener('click', APP.displayMovies);
 
+                                }
 
+                            }
+                        });
 
+                    }
+                });
+
+            });
 
     },
     init: () => {
         APP.pages = document.querySelectorAll(".page");
         APP.person = document.getElementById("personName");
-        //console.log(APP.person);
-        //console.log("hello");
-        APP.clearPages();
-
-        let URLs = location.href.split('=');
-        APP.person = URLs[1];
-        if (APP.person.includes("#")) {
-            let x = APP.person.split("#");
-            APP.person = x[0];
-        };
-        console.log(APP.person);
-        //console.log(`${APP.baseURL}search/${APP.person}${APP.APIkey}`);
-
-        // window.addEventListener('hashchange', hc);
+        let search = document.getElementById('submitButton');
+        console.log(search);
+        search.addEventListener('click', APP.displayProfile);
         window.addEventListener('popstate', ps);
-
-
-        fetch(`${APP.baseURL}search/person${APP.APIkey}${APP.person}`)
-            .then(response => response.json())
-            .then(data => {
-                //console.log(data);
-                data.results.forEach(person => {
-                    if (person.known_for_department == "Acting") {
-                        APP.displayProfile(person);
-                    }
-                });
-            })
 
     },
     checkHash: function (pageName) {
@@ -201,8 +189,6 @@ let APP = {
             }
 
         });
-
-
     },
     clearPages: function () {
 
@@ -212,42 +198,28 @@ let APP = {
             //     page.removeChild(element);
             while (page.firstChild) {
                 console.log(`removed: ${page.firstChild}`);
-                
                 page.removeChild(page.firstChild);
             }
-            
+
         });
 
     }
 
 
 }
-
-function hc(ev) {
-    console.log("INSIDE HASHCHANGE");
-    console.log(ev.newURL);
-    
-    
-
-}
-
 function ps(ev) {
-    console.log("popstate inside");
     let name = location.hash.split("#");
-    ev.preventDefault();
-    APP.clearPages();
-    if (APP.counter != 1) {
-        if (name[1] == "actor") {
-            APP.init();
-        } else if (name[1] == "movies") {
-            APP.displayMovies(APP.movieTarget);
+    console.log(name[1]);
     
-        } else {
-            APP.movieDataDisplay(APP.dataTarget);
-    
-        } 
-    }
-    APP.counter = 0;
+    if (name[1] == "actor") {
+        APP.displayProfile(APP.personTarget);
+    } else if (name[1] == "movies") {
+        APP.displayMovies(APP.movieTarget);
+
+    } else {
+        APP.movieDataDisplay(APP.dataTarget);
+
+    } 
 
 }
 
