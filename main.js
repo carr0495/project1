@@ -208,18 +208,21 @@ let APP = {
 
 }
 function ps(ev) {
+    ev.preventDefault();
+
     let name = location.hash.split("#");
     console.log(name[1]);
+    console.log(ev.state);
     
-    if (name[1] == "actor") {
-        APP.displayProfile(APP.personTarget);
-    } else if (name[1] == "movies") {
-        APP.displayMovies(APP.movieTarget);
+    // if (name[1] == "actor") {
+    //     APP.displayProfile(APP.personTarget);
+    // } else if (name[1] == "movies") {
+    //     APP.displayMovies(APP.movieTarget);
 
-    } else {
-        APP.movieDataDisplay(APP.dataTarget);
+    // } else {
+    //     APP.movieDataDisplay(APP.dataTarget);
 
-    } 
+    // } 
 
 }
 
