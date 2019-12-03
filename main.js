@@ -206,6 +206,8 @@ let APP = {
 function ps(ev) {
     ev.preventDefault();
     // history.go(-1);
+    console.log("inside ps");
+    
     let name = location.hash.split("#");
     console.log(name[1]);
     console.log(ev.state);
