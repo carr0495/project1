@@ -176,7 +176,7 @@ let APP = {
         console.log(APP.person);
         //console.log(`${APP.baseURL}search/${APP.person}${APP.APIkey}`);
 
-        window.addEventListener('hashchange', hc);
+        // window.addEventListener('hashchange', hc);
         window.addEventListener('popstate', ps);
 
 
@@ -226,8 +226,15 @@ let APP = {
 function hc(ev) {
     console.log("INSIDE HASHCHANGE");
     console.log(ev.newURL);
-    let name = location.hash.split("#");
+    
+    
 
+}
+
+function ps(ev) {
+    console.log("popstate inside");
+    let name = location.hash.split("#");
+    ev.preventDefault();
     APP.clearPages();
     if (APP.counter != 1) {
         if (name[1] == "actor") {
@@ -241,13 +248,6 @@ function hc(ev) {
         } 
     }
     APP.counter = 0;
-    
-
-}
-
-function ps(ev) {
-    console.log("popstate inside");
-    APP.clearPages();
 
 }
 
